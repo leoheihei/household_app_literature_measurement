@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>附录 A 检索式与编码规则 · 家用洗护文献计量综述</title>
+<meta name="description" content="五层语料的检索式、筛除规则、编码词表与归并表，共 9 节、8 张表。">
+<link rel="stylesheet" href="appendix.css">
+</head><body>
+<header class="top">
+  <a class="brand" href="index.html">附录 · 家用洗护文献计量综述</a>
+  <nav class="side"><p class="side-t">本页</p><ol><li><a href="#a1">A.1　国际主库（L1）</a></li><li><a href="#a2">A.2　中文期刊库（L2）</a></li><li><a href="#a3">A.3　定向补检（L3）</a></li><li><a href="#a4">A.4　洗涤剂专项（L4）</a></li><li><a href="#a5">A.5　四条路径的编码</a></li><li><a href="#a6">A.6　研究对象、证据类型与结果指标</a></li><li><a href="#a7">A.7　十五个技术主题归为七组基础研究问题</a></li><li><a href="#a8">A.8　设备关联度（DAI）</a></li><li><a href="#a9">A.9　专利语料（L5）</a></li></ol></nav>
+</header>
+<main>
+<p class="kicker">附录 A</p>
+<h1>检索式与编码规则</h1>
+<p class="lead">本文为论文附录的网页版，与正文同版（v4.3）。文中“2.1 节”“5.2 节”等指正文小节，“图 8”“图 11”等见正文插图。</p>
+<p>本附录把可复算的口径一次列全：五层语料的检索式、筛除规则、编码词表与归并表。正文里凡以份额出现的数字，都由下列词表在同一批题录上重跑得到；词表之外还有判断的，只出现在 4.1—4.4 节的文献阅读部分，并已在 5.2 节声明。检索与筛除的执行日期为 2026 年 11 月 6 日至 11 日。</p>
+
+<h2 id="a1">A.1　国际主库（L1）</h2>
+
+<p>平台为 OpenAlex（含 Crossref 元数据），检索字段取题名＋摘要（<code>title_and_abstract.search</code>），限定 <code>from_publication_date:2006-01-01</code>，按被引降序（<code>sort=cited_by_count:desc</code>）分页取数，每页 200 条，用 cursor 翻页，每条检索词组最多保留 1 400 条；不使用主题词表限定。检索不用布尔词块，而用 39 条二至三词的检索词组（表 A1）：词组在题名＋摘要上按短语匹配，比逐词 AND 更贴近本文的题名口径，也把“洗护语境”直接写进了检索式。</p>
+
+<div class="tbl">
+<p class="cap">表 A1　L1 的 39 条检索词组（题名＋摘要字段，2006-01-01 起）</p>
+<table class="small fixed">
+<colgroup><col style="width:5%"><col style="width:45%"><col style="width:5%"><col style="width:45%"></colgroup>
+<thead><tr><th>序</th><th>检索词组</th><th>序</th><th>检索词组</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>laundering textile</td><td>21</td><td>microplastics laundry</td></tr>
+<tr><td>2</td><td>laundering cotton</td><td>22</td><td>microfibers textile washing</td></tr>
+<tr><td>3</td><td>laundering wool</td><td>23</td><td>microplastic washing machine</td></tr>
+<tr><td>4</td><td>laundering garment</td><td>24</td><td>care label garment</td></tr>
+<tr><td>5</td><td>laundering clothing</td><td>25</td><td>care label textile</td></tr>
+<tr><td>6</td><td>laundering detergent</td><td>26</td><td>shrinkage wool washing</td></tr>
+<tr><td>7</td><td>laundering fabric</td><td>27</td><td>felting shrinkage</td></tr>
+<tr><td>8</td><td>laundry fabric care</td><td>28</td><td>washing textile care</td></tr>
+<tr><td>9</td><td>home laundering</td><td>29</td><td>fabric hand washing</td></tr>
+<tr><td>10</td><td>domestic laundering</td><td>30</td><td>odor textile washing</td></tr>
+<tr><td>11</td><td>domestic washing</td><td>31</td><td>textile care</td></tr>
+<tr><td>12</td><td>tumble drying fabric</td><td>32</td><td>fabric care</td></tr>
+<tr><td>13</td><td>clothes dryer fabric</td><td>33</td><td>clothing care</td></tr>
+<tr><td>14</td><td>clothes dryer textile</td><td>34</td><td>garment care</td></tr>
+<tr><td>15</td><td>smoothness appearance fabric</td><td>35</td><td>washing machine fabric</td></tr>
+<tr><td>16</td><td>wrinkle recovery fabric</td><td>36</td><td>detergent fabric washing</td></tr>
+<tr><td>17</td><td>fabric smoothness</td><td>37</td><td>fabric softener</td></tr>
+<tr><td>18</td><td>soil release fabric</td><td>38</td><td>textile laundering hygiene</td></tr>
+<tr><td>19</td><td>detergency fabric</td><td>39</td><td>laundering antibacterial textile</td></tr>
+<tr><td>20</td><td>detergency textile</td><td>—</td><td>—</td></tr>
+</tbody>
+</table>
+<p class="note">注：词组不是布尔式，组内以空格分词、由平台按短语匹配。39 组的命中有重叠，同一篇可被多组召回，故逐组命中数不可相加；抓取时按 OpenAlex work id 去重，并保留每条的命中来源（最多 6 条来源词组）以便复核。检索脚本见随文文件 <code>oa_crawl_global.py</code>。</p>
+</div>
+
+<p>词组的搭法是“洗护动作＋对象”：laundering 与 textile、cotton、wool、garment、clothing、fabric 逐一搭配，另加 laundry fabric care、home laundering、domestic laundering、domestic washing 三条语境组合；其余按专题铺开——烘干与平整（tumble drying fabric、clothes dryer fabric／textile、smoothness appearance fabric、wrinkle recovery fabric、fabric smoothness）、去污与配方（soil release fabric、detergency fabric／textile、detergent fabric washing、fabric softener）、微塑料（microplastics laundry、microfibers textile washing、microplastic washing machine）、标签与保养（care label garment／textile、shrinkage wool washing、felting shrinkage、fabric hand washing）、洗护泛称（textile care、fabric care、clothing care、garment care、washing textile care、washing machine fabric）、卫生（odor textile washing、textile laundering hygiene、laundering antibacterial textile）。</p>
+
+<p>抓取分两轮：第一轮自 2006-01-01 起按被引降序，第二轮把起点改为 2019-01-01、同样按被引降序。加第二轮的理由是 cursor 分页在本环境下每条查询实际只稳定返回前若干页，单靠一轮会系统性压低近年成果。两轮按 work id 合并去重，得原始题录 7 108 条。</p>
+
+<p>筛除在题录级完成，不读全文。剔除项八类：反洗钱（money laundering）、手卫生与个人清洁、医疗器械与内镜清洗、矿石与车辆清洗、印染与废水处理、海洋微塑料本底调查、图书与预印本、纯整理与电子织物。一篇题名含 washing 而研究对象是水而非织物的论文，即使三个检索词全部命中也不计。识别 7 108 条，题名与摘要筛除 6 022 条，入库 1 086 条。</p>
+
+<p>入库记录按相关程度分三级：A 级 722 条，题名同时含洗护动作词与织物或衣物词；B 级 60 条，题名含微塑料或抗菌而摘要含洗涤情境；C 级 304 条，仅摘要相关，只作背景。计量使用 A+B 级 782 条，C 级不进任何统计口径。</p>
+
+<h2 id="a2">A.2　中文期刊库（L2）</h2>
+
+<p>不用商业数据库，改抓期刊官网的逐期目录：《纺织学报》2006—2026 年 251 期 7 736 篇、《现代纺织技术》1 704 篇、《家电科技》2018—2026 年 2 344 篇，另补《丝绸》《印染》《毛纺科技》等 19 条；再以逐期目录补《日用化学工业》《日用化学品科学》2014—2026 年 47 条，后两刊只取得题录。合计 241 条。</p>
+
+<p>筛选只按题名，词表分四组（表 A2）：锚点词决定“是不是家用洗护”，排除词与后整理词决定“是不是别的行当”，边界词单列而不计入总量。</p>
+
+<div class="tbl">
+<p class="cap">表 A2　中文库的筛选题名词表</p>
+<table class="small fixed">
+<colgroup><col style="width:16%"><col style="width:64%"><col style="width:20%"></colgroup>
+<thead><tr><th>组别</th><th>词</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td>锚点（25）</td><td>洗衣、衣物、衣料、织物、纺织、服装、面料、棉织物、针织物、毛织物、真丝、丝绸、羊毛、牛仔、洗衣机、干衣机、熨烫、挂烫、烘干、柔顺、护色、抗再沉积、污布、去污力、洗净</td><td>命中即计入</td></tr>
+<tr><td>边界（8）</td><td>洗涤剂、洗涤、表面活性剂、去污、污渍、漂白、酶、增白</td><td>只命中边界词者单列，不进 N</td></tr>
+<tr><td>排除（24）</td><td>洗护发、洗发、护肤、面膜、头皮、皮肤、抗皱、紧致、美白、牙膏、口腔、食品用、餐具、洗碗机、油墨、放射性、包装、视觉、设计策略、工业清洗、金属清洗、硬表面、化妆品、皮革</td><td>任一命中即剔除</td></tr>
+<tr><td>后整理（8）</td><td>整理剂、整理性能、抗静电、染色、阻燃、微胶囊、疏水改性、接枝</td><td>带锚点也剔除</td></tr>
+</tbody>
+</table>
+<p class="note">注：排除词与后整理词先判，锚点词后判；两处同时命中的按剔除处理。括号内为该组词数。</p>
+</div>
+
+<p>题名先做归一化再匹配：NFKC 归一，去零宽字符与全角空格，去括号副题，按破折号与冒号截断副标题，去标点，统一小写。去重先按归一化题名精确匹配，再对相似度 0.9 以上的候选逐条人工复核。中文库的信息补齐与不入聚类的理由见 2.1 节与 5.2 节。</p>
+
+<h2 id="a3">A.3　定向补检（L3）</h2>
+
+<p>补检针对三处术语错位：洗衣行为研究写 laundry behaviour，题名里连 wash 都不出现；卫生洗护写在微生物学期刊；免烫整理写 durable press 而不写 wrinkle。按词检索抓不到，只能按人与按刊补。按人用七位核心作者的个人产出清单逐条比对（同一份清单另用于估计 L1 的覆盖率 16%—65%）；按刊翻检 Applied and Environmental Microbiology、Journal of Applied Microbiology 与《中国洗涤用品工业》的目录。两块合计 287 条。三库按题名去重后 1 634 条。</p>
+
+<h2 id="a4">A.4　洗涤剂专项（L4）</h2>
+
+<p>L1 的检索框以织物为对象，配方研究在框外，故另立一套。十组配方词作题名检索，2026 年 11 月执行，命中见表 A3。每式按被引降序取前 200 条，按题名剔除生物化学、食品与日化非织物语境，题名去重后 620 条；与主库只重叠 40 条、6.5%。共被引检验取其中被引最高的 100 篇。</p>
+
+<div class="tbl">
+<p class="cap">表 A3　L4 的十组检索式与命中数（题名检索，2006-01 至 2026-11）</p>
+<table class="small fixed">
+<colgroup><col style="width:7%"><col style="width:73%"><col style="width:20%"></colgroup>
+<thead><tr><th>编号</th><th>检索式</th><th>命中（条）</th></tr></thead>
+<tbody>
+<tr><td>Q1</td><td>detergent AND (laundry OR fabric OR textile OR cloth OR washing)</td><td>781</td></tr>
+<tr><td>Q2</td><td>"laundry detergent" OR "laundry detergents"</td><td>479</td></tr>
+<tr><td>Q3</td><td>detergency OR detergencies</td><td>8 276</td></tr>
+<tr><td>Q4</td><td>(surfactant OR surfactants OR "surface active agent") AND (laundry OR detergency OR "soil removal" OR detergents)</td><td>388</td></tr>
+<tr><td>Q5</td><td>(protease OR amylase OR lipase OR cellulase OR mannanase OR enzyme OR enzymes) AND (detergent OR detergents OR detergency)</td><td>742</td></tr>
+<tr><td>Q6</td><td>(bleach OR bleaching OR "optical brightener" OR "fluorescent whitening" OR builder OR zeolite OR chelating) AND (detergent OR detergents OR laundry)</td><td>142</td></tr>
+<tr><td>Q7</td><td>("fabric softener" OR "fabric softeners" OR softener OR softeners) AND (laundry OR fabric OR textile OR rinse)</td><td>331</td></tr>
+<tr><td>Q8</td><td>(dosing OR dose OR "unit dose" OR "single dose" OR sachet OR capsule OR pods) AND (detergent OR detergents OR laundry)</td><td>135</td></tr>
+<tr><td>Q9</td><td>(detergent OR detergents OR surfactant OR surfactants) AND (biodegradation OR biodegradability OR ecotoxicology OR eutrophication OR "life cycle assessment" OR sustainability) AND (laundry OR household OR domestic)</td><td>28</td></tr>
+<tr><td>Q10</td><td>(detergent OR detergents OR surfactant OR surfactants) AND (microplastic OR microplastics OR microfiber OR microfibre OR "fibre release" OR "fiber release")</td><td>97</td></tr>
+<tr class="sum"><td colspan="2">十组合计（各组合计相加，未去重）</td><td>11 399</td></tr>
+</tbody>
+</table>
+<p class="note">注：各组合计相加，未去重，故 11 399 不是独立文献数；去重与筛除之后的可分析样本为 620 条。</p>
+</div>
+
+<h2 id="a5">A.5　四条路径的编码</h2>
+
+<p>路径编码只用题名，与 2.4 节的 DAI 同一口径：一个词命中即计入该路径，允许一篇多标。词表与排除规则见表 A4。整理类文献另设排除——题名既是整理工艺，又只以“耐洗”“可水洗”提及洗涤的，不计入洗涤路径，洗涤在这类研究里是考核条件而不是研究对象。</p>
+
+<div class="tbl">
+<p class="cap">表 A4　四路径的编码词表与排除规则</p>
+<table class="small fixed">
+<colgroup><col style="width:13%"><col style="width:87%"></colgroup>
+<thead><tr><th>路径</th><th>命名词（正则，忽略大小写）</th></tr></thead>
+<tbody>
+<tr><td>洗涤</td><td>wash、washing、washed、washer、launder、laundering、laundry、detergency、detergent、surfactant、soil release、soil removal、stain removal、rinse、bleach、fabric softener、hand-wash、洗</td></tr>
+<tr><td>烘干</td><td>dry、drying、dryer、tumble、line-dry、dehydrate、heat pump、moisture content／extraction／removal、烘、干燥</td></tr>
+<tr><td>熨烫</td><td>iron、ironing、steam ironing、steam pressing、steam treatment、steam-iron、garment steamer、press washing、熨烫、蒸汽熨</td></tr>
+<tr><td>一体化</td><td>washer-dryer、wash-dry、wash／dryer、all-in-one、combination washer、combined washing and drying、洗干一体、洗烘一体</td></tr>
+<tr><td>排除</td><td>整理侧：finishing、treatment、coating、grafting、synthesis、dyeing、fastness、durable press、整理、染色、合成；熨烫侧：durable press、press finishing、anti-wrinkle（免烫整理，非熨烫）</td></tr>
+</tbody>
+</table>
+<p class="note">注：洗涤侧排除规则仅在后整理词与“耐洗／可水洗”词同现、且题名不含烘干词时生效。编码结果：洗涤 456、烘干 67、熨烫 5、一体化 3，25 篇进入两条以上路径，279 篇四条均不命中。</p>
+</div>
+
+<h2 id="a6">A.6　研究对象、证据类型与结果指标</h2>
+
+<p>研究对象四类，词表见表 A5，一篇可多标。证据类型六级、互斥，按优先级判定，先命中者为准：综述 → 评价与标准 → 模型 → 机理 → 产业技术 → 控制实验；判不出的归控制实验。</p>
+
+<div class="tbl">
+<p class="cap">表 A5　研究对象与证据类型的判定词</p>
+<table class="small fixed">
+<colgroup><col style="width:23%"><col style="width:77%"></colgroup>
+<thead><tr><th>编码</th><th>判定词（要点）</th></tr></thead>
+<tbody>
+<tr><td>研究对象·织物</td><td>fabric、textile、garment、cloth、clothing、cotton、wool、polyester、silk、knit、woven、yarn、fibre／fiber、denim、linen、织物、面料、服装、纤维、羊毛、棉</td></tr>
+<tr><td>研究对象·设备</td><td>washing machine、washer、dryer、tumble dryer、drum、appliance、clothes dryer、heat pump、洗衣机、干衣机、滚筒、内筒</td></tr>
+<tr><td>研究对象·洗涤剂</td><td>detergent、surfactant、softener、bleach、enzyme、formulation、builder、pod、sachet、washing powder、liquid detergent、洗涤剂、洗衣液、柔顺剂</td></tr>
+<tr><td>研究对象·使用者</td><td>consumer、household、behaviour、habit、care label、survey、questionnaire、practice、perception、awareness、消费者、标签、行为</td></tr>
+<tr><td>证据·综述</td><td>review、overview、state-of-the-art、perspective、progress、advances、critical review、综述、进展</td></tr>
+<tr><td>证据·评价与标准</td><td>standard、test method、evaluation method、rating、inter-laboratory、round-robin、protocol、AATCC、ISO、GB、certification、标准、试验方法、评价方法、评级</td></tr>
+<tr><td>证据·模型</td><td>model、simulation、CFD、finite element、numerical、prediction、theoretical、mathematical、kinetics、模型、模拟、仿真、预测</td></tr>
+<tr><td>证据·机理</td><td>mechanism、insight、adsorption、molecular、interfacial、surface chemistry、decoupling、机理、机制</td></tr>
+<tr><td>证据·产业技术</td><td>design、development、optimization、improvement、novel、technology、control、sensor、system、fabrication、prototype、platform、apparatus、设计、优化、装置、控制系统</td></tr>
+<tr><td>证据·控制实验</td><td>以上六级均不命中者</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>结果指标六类、多标：洗净、外观、损伤、卫生、能耗水耗、纤维脱落，词表同 2.3 节所述口径。题名未写指标时按主题归并一次（表 A6），避免把“题名沉默”记成“没有指标”。这条补救只在题名沉默时使用，不覆盖题名已写出的判断。</p>
+
+<div class="tbl">
+<p class="cap">表 A6　题名沉默时的主题→指标归并</p>
+<table class="small fixed">
+<colgroup><col style="width:42%"><col style="width:18%"><col style="width:40%"></colgroup>
+<thead><tr><th>技术主题</th><th>并入指标</th><th>理由</th></tr></thead>
+<tbody>
+<tr><td>纤维微塑料</td><td>纤维脱落</td><td>主题即指标</td></tr>
+<tr><td>洗涤去污与污渍机理</td><td>洗净</td><td>唯一可归的指标</td></tr>
+<tr><td>洗后外观（平整度/折皱）</td><td>外观</td><td>主题即指标</td></tr>
+<tr><td>尺寸稳定性与毡缩</td><td>损伤</td><td>尺寸变化属损伤一类</td></tr>
+<tr><td>手感与低应力力学性能</td><td>损伤</td><td>力学性能退化</td></tr>
+<tr><td>卫生与抗菌洗护</td><td>卫生</td><td>主题即指标</td></tr>
+<tr><td>异味与除味</td><td>卫生</td><td>微生物代谢产物</td></tr>
+<tr><td>可持续洗护与碳/水足迹</td><td>能耗水耗</td><td>足迹按能耗与水耗计</td></tr>
+<tr><td>颜色与染料转移</td><td>外观</td><td>色变属外观</td></tr>
+</tbody>
+</table>
+<p class="note">注：其余六个主题（机械作用、热质传递、评价与标准、标签与行为、特殊材质、其他）不作归并，题名沉默即记为零指标，故“题名未写指标”的篇数只可能被低估、不会被高估。</p>
+</div>
+
+<p>编码一致性用 40 篇随机抽核估计：路径判定 39 篇与人工判断一致，证据类型 33 篇一致。分歧集中在两类题名——图像评级被规则记成控制实验，护理标签本该单列使用侧。复核由单人完成，未计算编码者间一致性，这一限制写在 5.2 节。</p>
+
+<h2 id="a7">A.7　十五个技术主题归为七组基础研究问题</h2>
+
+<p>表 3 的十五类主题按“问的是哪一门基础问题”归成七组（表 A7），归并只做合并、不新增判断，故表 7 的每一格都可回溯到表 3 的类目。归并不改篇数，只改分栏。</p>
+
+<div class="tbl">
+<p class="cap">表 A7　十五类主题与七组基础研究问题的对应（n = 782）</p>
+<table class="small fixed">
+<colgroup><col style="width:26%"><col style="width:52%"><col style="width:11%"><col style="width:11%"></colgroup>
+<thead><tr><th>基础研究问题（七组）</th><th>所含技术主题</th><th>篇数</th><th>占比</th></tr></thead>
+<tbody>
+<tr><td>去污与界面作用</td><td>洗涤去污与污渍机理、颜色与染料转移</td><td>131</td><td>16.8%</td></tr>
+<tr><td>折皱回复与织物力学</td><td>洗后外观、尺寸稳定性与毡缩、手感与低应力力学性能、熨烫与蒸汽护理</td><td>192</td><td>24.6%</td></tr>
+<tr><td>机械作用与织物运动</td><td>洗涤机械作用与织物运动</td><td>32</td><td>4.1%</td></tr>
+<tr><td>热质传递与干燥</td><td>烘干与干衣机</td><td>59</td><td>7.5%</td></tr>
+<tr><td>卫生与微生物</td><td>卫生与抗菌洗护、异味与除味</td><td>52</td><td>6.6%</td></tr>
+<tr><td>环境与资源</td><td>纤维微塑料、可持续洗护与碳/水足迹</td><td>162</td><td>20.7%</td></tr>
+<tr><td>评价、标准与使用行为</td><td>评价方法与标准化、洗护标签与消费者行为</td><td>59</td><td>7.5%</td></tr>
+<tr class="sum"><td>未归入以上七组</td><td>特殊材质与功能纺织品护理、其他</td><td>95</td><td>12.1%</td></tr>
+</tbody>
+</table>
+<p class="note">注：每篇只取一个主类，八行合计 782 篇。专利侧不设同一张表——专利题名按保护客体与功能著录，主题口径下 54.0% 落入“其他”，并表会把“未标”读成“没有研究”。</p>
+</div>
+
+<h2 id="a8">A.8　设备关联度（DAI）</h2>
+
+<p>DAI 定义为某一文献集合中题名出现设备实体词的篇数除以该集合的总篇数。设备实体词取 washing machine、washer、dryer、tumble dryer、drum、appliance 及对应的中文词（洗衣机、干衣机、滚筒、内筒）；“tumble dry”这类动词短语不计入，它描述工艺动作而不指称机器实体，计入会把程序优化类研究混进设备研究。全库 DAI 为 9.0%（70/782）；分阵地、分国家的取值见图 8 与 3.4 节。</p>
+
+<p>这一指标只用题名，是取舍而非疏漏：全文检索会把“用洗衣机洗了若干次”这类仅把设备当实验装置的论文全部计入，指标随即失去区分力；代价是漏掉少数题名不写而正文深究设备的工作。两种误差方向相反，这里取保守的一侧。</p>
+
+
+<h2 id="a9">A.9　专利语料（L5）</h2>
+
+<p>专利以分类号作骨架，不以关键词：设备线取 D06F（织物洗涤、干燥、熨烫及家用洗护设备），配方线取 C11D 且题名含织物语境词；受理局为 CN、US、EP、JP、KR、WO 六局；按最早优先权日限 2006-01-01 至 2026-11-06。这样定框的理由是分类号不依赖题名用词——一台洗衣机的专利未必在题名写“洗”，一份洗涤剂组合物的专利也未必写“织物”，词表在这里比分类体系漏得更多。两条线分别命中 217 476 件与 7 473 件，合计 224 949 件。</p>
+
+<p>计数按年切片逐年取数再加总。同一窗口一次性检索给出的是近似值，D06F 整窗 147 455 件对逐年 217 476 件，低约三成，系服务端对大结果集的近似计数所致，故一律用年切片口径；单年读数经两次独立查询复核一致。结构编码用分层随机抽样：每年在该年结果中随机取一页 100 条，设备线得 2 088 件（抽样比 0.96%）、配方线得 1 601 件（21.4%），按层权重回推占比。单查询最多只暴露 1 000 条，年申请量超过 1 000 件的年份，抽样框限于该年相关度前 1 000 件；头部申请人因此被系统性高估，主体集中度只宜作上限读。</p>
+
+<p>编码字段六项：路径（四路径多标）、主保护客体（装置／结构、方法／工艺、传感与控制、组合物／配方、系统／集成、测试／评价，六类互斥）、申请人主体（企业、高校与科研机构、个人／未标注）、受理局（按公开号前缀）、法律状态（Google Patents 按族归并值，非逐局年费与无效记录）、同族代理（同优先权日＋同题名，样本内仅压掉 4.9%，故全部计数为公开文献件数而非族数）。</p>
+<p>引证一侧的做法分两步。先抽授权文本：从 3 689 件编码样本中按局配额抽 342 件，逐件取 Google Patents 的后向引证表，得著录可得率——美国文本中位 17.5 条、有引证者占 99.4%，中国文本中位 3.0 条、有引证者占 85.9%，欧洲与日本多数只有同族引证。各局著录密度不可比，合并作图会把“著录完整”读成“引用更多”，故网络只建在美国样本上，不用于跨局比较。</p><p>再建网络。以单件专利为节点的共被引在这个样本上连不起来：153 件进入网络的美国文本共著录 3670 条在先技术，两两组合得 8.3 万对，被两件及以上专利同时引用的只有 256 对（0.31%），被三件同时引用的降到 36 对。故节点上移到申请人：两家企业被同一件专利同时引用，记一条边。申请人名称变体按法律后缀与常见缩写归并；同被引边阈取 3 次，节点加权度下限 6，最大连通片截取前 60 家，分簇用 Louvain（networkx，seed 42）。这一改换了分析单位，机构共被引衡量的是“谁的在先技术被一起当作背景”，不能与文献侧以论文为节点的共被引直接比较。</p><p>三档阈值的结果见表 A8。60 家在 3 次一档聚成 3 簇，簇内边占 76.9%，簇间 73 条，其中整机与配方之间只有 14 条。正文只描述这一档，并把三档的差一并给出，读者可以自己判断分簇能撑多重的结论。</p>
+
+<div class="tbl">
+<p class="cap">表 A8　机构共被引网络的边阈敏感性（美国授权文本，153 件）</p>
+<table class="small fixed">
+<colgroup><col style="width:20%"><col style="width:12%"><col style="width:12%"><col style="width:14%"><col style="width:15%"><col style="width:27%"></colgroup>
+<thead><tr><th>边阈</th><th>节点</th><th>边</th><th>簇数</th><th>模块度 Q</th><th>与 3 次一档的一致度</th></tr></thead>
+<tbody>
+<tr><td>2 次</td><td>60</td><td>461</td><td>3</td><td>0.279</td><td>0.682</td></tr>
+<tr><td>3 次（正文所用）</td><td>60</td><td>312</td><td>3</td><td>0.289</td><td>1.000</td></tr>
+<tr><td>5 次</td><td>40</td><td>141</td><td>3</td><td>0.249</td><td>0.507</td></tr>
+</tbody>
+</table>
+<p class="note">注：节点加权度下限 6、截取前 60 家在两档之间固定不变，只有同被引边阈变动；一致度为调整兰德指数（ARI），以 3 次一档为基准。模块度在三档之间只差 0.04，分簇却随阈值移动，故正文只描述 3 次一档，不宣称分簇稳健。</p>
+</div>
+
+
+</main>
+<footer>
+  <p>《家用洗护技术的演进路径与研究格局：2006—2026 年 1 634 篇文献的计量分析》附录　稿本 v4.3 ／ 2026-11-12</p>
+  <p>附录内容与论文正文同步；如需引用，请以正式发表版本为准。</p>
+</footer>
+</body></html>
